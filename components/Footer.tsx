@@ -187,6 +187,15 @@ export function Footer() {
           </p>
           <p className="font-sans text-xs text-cream/30">Free local delivery on orders over $45</p>
         </div>
+
+        {/* ── Concept disclaimer ── */}
+        <div className="border-t border-cream/10 py-5 text-center">
+          <p className="font-sans text-xs text-cream/40 leading-relaxed max-w-2xl mx-auto">
+            This site is a visual concept redesign created for design demonstration purposes only.
+            It is not affiliated with, endorsed by, or operated by Tan Soon Mui Food Industries.
+            Products, prices, and ordering are illustrative and non-functional.
+          </p>
+        </div>
       </div>
     </footer>
   );

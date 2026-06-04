@@ -38,7 +38,13 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${dmSans.variable} ${notoSansSC.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {/* Concept-piece disclaimer — shown site-wide */}
+        <div className="bg-forest text-cream/80 text-center px-4 py-1.5 font-sans text-[11px] sm:text-xs tracking-wide">
+          Concept redesign — an unofficial design study, not affiliated with Tan Soon Mui Food Industries. No real products or orders.
+        </div>
+        {children}
+      </body>
     </html>
   );
 }
