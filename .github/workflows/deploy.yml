@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+# Build the static export and publish it to GitHub Pages on every push to the
+# default branch (works whether your branch is named main or master).
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch: # lets you trigger a deploy manually from the Actions tab
+
+# Permissions the deploy job needs to publish Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        # Serve from the repo's subpath, e.g. /tsm-site — auto-derived from the
+        # repo name so it stays correct whatever you name the repository.
+        env:
+          PAGES_BASE_PATH: /${{ github.event.repository.name }}
+        run: npm run build
+
+      - name: Disable Jekyll processing (keeps the _next folder)
+        run: touch out/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

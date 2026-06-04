@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ── MATON-direction brand tokens (warm, organic, botanical) ── */
+  --color-forest: #22372a; /* deep herbal green — hero + footer panels, image labels */
+  --color-cream: #f1eee2; /* warm ivory — dominant content background */
+  --color-stone: #e7e5de; /* light warm-gray — bento cards, alt sections */
+  --color-matcha: #7ba05b; /* mid botanical green — accents, dots, icons */
+  --color-lime: #c7e85c; /* bright chartreuse — CTA pill buttons */
+  --color-gula: #c77b3c; /* gula-melaka caramel — sparing warm accent */
+  --color-ink: #1a1f1a; /* near-black green — body text on cream */
+
+  /* ── Legacy tokens — still referenced by the not-yet-rebuilt homepage.
+        Remove these when the homepage is rebuilt to the MATON direction. ── */
+  --color-paper: #ffffff;
+  --color-mist: #f2f0ec;
+  --color-line: #e3e0d9;
+  --color-pandan: #3c5a40;
+  --color-pandan-lt: #6e8f6a;
+
+  /* Font stacks — resolved from Next.js font CSS variables */
+  --font-display: var(--font-fraunces), "Fraunces", Georgia, serif;
+  --font-sans: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  --font-chinese: var(--font-noto-sc), "Noto Sans SC", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f1eee2;
+  color: #1a1f1a;
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
