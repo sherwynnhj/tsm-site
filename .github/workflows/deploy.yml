@@ -38,7 +38,7 @@ jobs:
         # Serve from the repo's subpath, e.g. /tsm-site — auto-derived from the
         # repo name so it stays correct whatever you name the repository.
         env:
-          PAGES_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
         run: npm run build
 
       - name: Disable Jekyll processing (keeps the _next folder)
